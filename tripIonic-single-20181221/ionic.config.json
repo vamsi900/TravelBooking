@@ -1,0 +1,8 @@
+{
+  "name": "tripIonic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "dd57dc32"
+}

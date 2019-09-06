@@ -1,0 +1,22 @@
+page-cruise-results,
+.cruises {
+  .coverbg {
+    height: 12rem;
+    background-size: 100% auto;
+    background-position: center;
+    ion-badge {
+      border-radius: 0 1rem;
+    }
+  }
+  .itemm {
+    padding-left: 10px;
+    ion-thumbnail {
+      img {
+        width: 64px;
+        height: 64px;
+        margin-bottom: .5rem;
+        border-radius: 1rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "tripIonic",
+  "short_name": "tripIonic",
+  "start_url": "./?utm_source=web_app_manifest",
+  "orientation": "portrait",
+  "display": "fullscreen",
+  "icons": [{
+    "src": "assets/img/logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#0763e9",
+  "theme_color": "#0763e9"
+}

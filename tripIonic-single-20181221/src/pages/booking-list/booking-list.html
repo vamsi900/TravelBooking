@@ -1,0 +1,203 @@
+<ion-header class="no-shadow">
+    <ion-navbar class="no-border" color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Booking List</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="common-bg">
+  <ion-grid no-padding fixed>
+    <ion-row>
+      <ion-col col-12 margin-bottom>
+
+        <ion-card *ngIf="!flightBookings.length && !cruiseBookings.length && !trainBookings.length" class="primary-bg" margin-top>
+          <ion-card-content>
+          	<p text-center class="text-white">You have no bookings yet.</p>
+          </ion-card-content>
+        </ion-card>
+        <!-- Flight Books -->
+        <div *ngIf="flightBookings.length">
+          <ion-item-divider color="dark" class="bold">Flights</ion-item-divider>
+
+          <ion-card *ngFor="let book of flightBookings">
+            <ion-card-header text-center class="primary-bg">
+              <h3 ion-text class="text-white">
+                Booking ID: <strong>{{ book.bookId }}</strong> - Fri 11th May 2018
+              </h3>
+            </ion-card-header>
+            <ion-card-content no-padding *ngIf="book.departing">
+              <ion-item class="itemm">
+                <ion-thumbnail item-start>
+                  <img [src]="book.departing.logo">
+                  <!-- <span ion-text text-center class="text-sm">{{ flight.name }}</span> -->
+                </ion-thumbnail>
+                <h2 ion-text color="dark">
+                  <strong>{{ book.departing.departure }}</strong> -
+                  <strong>{{ book.departing.arriving }}</strong>
+                </h2>
+                <h3>{{ book.departing.totaltime }} ({{ book.departing.steps }})</h3>
+                <h3 ion-text color="light">
+                  <strong>{{ book.departing.from }}</strong>
+                  <ion-icon name="plane" color="light"></ion-icon>
+                  <strong>{{ book.departing.to }}</strong>
+                </h3>
+
+                <div item-end>
+                  <ion-badge class="light-bg">
+                    <h3 class="bold">departing</h3>
+                  </ion-badge>
+                </div>
+              </ion-item>
+            </ion-card-content>
+
+            <hr class="primary-hr" no-margin>
+
+            <ion-card-content no-padding *ngIf="book.returning">
+              <ion-item class="itemm">
+                <ion-thumbnail item-start>
+                  <img [src]="book.returning.logo">
+                  <!-- <span ion-text text-center class="text-sm">{{ flight.name }}</span> -->
+                </ion-thumbnail>
+                <h2 ion-text color="dark">
+                  <strong>{{ book.returning.departure }}</strong> -
+                  <strong>{{ book.returning.arriving }}</strong>
+                </h2>
+                <h3>{{ book.returning.totaltime }} ({{ book.returning.steps }})</h3>
+                <h3 ion-text color="light">
+                  <strong>{{ book.returning.from }}</strong>
+                  <ion-icon name="plane" color="light" class="deg180"></ion-icon>
+                  <strong>{{ book.returning.to }}</strong>
+                </h3>
+
+                <div item-end>
+                  <ion-badge class="light-bg">
+                    <h3 class="bold">returning</h3>
+                  </ion-badge>
+                </div>
+              </ion-item>
+            </ion-card-content>
+
+            <ion-card-content class="green-bg" text-center>
+              <h6 class="text-white">total value:</h6>
+              <h5 class="bold text-2x text-white">{{ book.totalValue | currency:'USD':'symbol':'2.2' }}</h5>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+        <!-- Cruise Books -->
+        <!-- <div *ngIf="cruiseBookings.length">
+          <ion-item-divider color="dark" class="bold">Cruises</ion-item-divider>
+
+          <ion-card *ngFor="let book of cruiseBookings">
+            <ion-card-header text-center class="primary-bg">
+              <h3 ion-text class="text-white">
+                Booking ID:
+                <strong>{{ book.bookId }}</strong> - Fri 11th May 2018
+              </h3>
+            </ion-card-header>
+            <ion-card-content no-padding>
+              <ion-grid padding>
+                <ion-row>
+                  <ion-col col-12 no-padding>
+
+                    <ion-item class="itemm" no-padding margin-bottom>
+                      <ion-thumbnail item-start>
+                        <img [src]="book.cruise.thumb">
+                      </ion-thumbnail>
+                      <h2 ion-text color="dark">
+                        {{ book.cruise.name }}
+                      </h2>
+                      <h3>
+                        <strong>Sailing dates:</strong> {{ book.cruise.date }}</h3>
+                      <h3 ion-text color="light">
+                        <strong>{{ book.cruise.time }}</strong>
+                      </h3>
+                    </ion-item>
+
+                    <div *ngIf="book.cruise.free_cancellation">
+                      <ion-icon name="checkmark" class="text-green"></ion-icon>
+                      <span ion-text>Free cancellation</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+
+            <ion-card-content class="green-bg" text-center>
+              <h6 class="text-white">total value:</h6>
+              <h5 class="bold text-2x text-white">{{ book.totalValue | currency:'USD':'symbol':'2.2' }}</h5>
+            </ion-card-content>
+          </ion-card>
+        </div> -->
+
+        <!-- Train Books -->
+        <div *ngIf="trainBookings.length">
+          <ion-item-divider color="dark" class="bold">Trains</ion-item-divider>
+
+          <ion-card *ngFor="let book of trainBookings">
+            <ion-card-header text-center class="primary-bg">
+              <h3 ion-text class="text-white">
+                Booking ID:
+                <strong>{{ book.bookId }}</strong> - Fri 11th May 2018
+              </h3>
+            </ion-card-header>
+
+            <ion-card-content no-padding>
+              <ion-item class="itemm">
+                <ion-thumbnail item-start>
+                  <img [src]="book.train.logo">
+                </ion-thumbnail>
+                <h2 ion-text color="dark">
+                  <strong>{{ book.train.from }}</strong>
+                  <ion-icon name="train" color="light"></ion-icon>
+                  <strong>{{ book.train.to }}</strong>
+                </h2>
+                <h3 ion-text color="light">
+                  <strong>{{ book.train.name }}</strong>
+                </h3>
+                <p ion-text color="primary" class="text-sm">1 Adult, 1 Child</p>
+              </ion-item>
+
+              <ion-list-header text-center class="light-bg">
+                <span ion-text class="bold text-white">OUT - {{ book.train.outDate }}</span>
+              </ion-list-header>
+
+              <ion-item class="text-1x">
+                <ion-badge class="green-bg" item-start>
+                  <h3 class="bold text-white">{{book.train.out[0].price | currency:'USD':'symbol':'2.0'}}</h3>
+                </ion-badge>
+                <ion-label>
+                  {{ book.train.out[0].departure }} > {{ book.train.out[0].arriving }} ({{book.train.out[0].totaltime}})
+                </ion-label>
+              </ion-item>
+
+              <hr class="primary-hr" no-margin>
+
+              <ion-list-header text-center class="light-bg">
+                <span ion-text class="bold text-white">RETURN - {{ book.train.returnDate }}</span>
+              </ion-list-header>
+
+              <ion-item class="text-1x">
+                <ion-badge class="green-bg" item-start>
+                  <h3 class="bold text-white">{{ book.train.return[1].price | currency:'USD':'symbol':'2.0'}}</h3>
+                </ion-badge>
+                <ion-label>
+                  {{ book.train.return[1].departure }} > {{ book.train.return[1].arriving }} ({{book.train.return[1].totaltime}})
+                </ion-label>
+              </ion-item>
+
+            </ion-card-content>
+
+            <ion-card-content class="green-bg" text-center>
+              <h6 class="text-white">total value:</h6>
+              <h5 class="bold text-2x text-white">{{ book.totalValue | currency:'USD':'symbol':'2.2' }}</h5>
+            </ion-card-content>
+          </ion-card>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

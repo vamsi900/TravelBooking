@@ -1,0 +1,96 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar class="no-border" color="primary">
+    <ion-title>Train Detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="common-bg">
+  <!-- // -->
+  <ion-toolbar padding color="secondary">
+    <h3 ion-text no-margin class="text-white text-1x">
+      <strong>Review your trip</strong>
+    </h3>
+  </ion-toolbar>
+
+  <ion-grid fixed>
+    <ion-row margin-bottom>
+      <ion-col col-12 *ngIf="train">
+
+        <ion-card no-margin class="w100">
+          <ion-card-content no-padding>
+            <ion-item class="itemm">
+              <ion-thumbnail item-start>
+                <img [src]="train.logo">
+              </ion-thumbnail>
+              <h2 ion-text color="dark">
+                <strong>{{ train.from }}</strong>
+                <ion-icon name="train" color="light"></ion-icon>
+                <strong>{{ train.to }}</strong>
+              </h2>
+              <h3 ion-text color="light">
+                <strong>{{ train.name }}</strong>
+              </h3>
+              <p ion-text color="primary" class="text-sm">1 Adult, 1 Child</p>
+            </ion-item>
+
+            <ion-list-header text-center class="primary-bg">
+              <span ion-text class="bold text-white">OUT - {{ train.outDate }}</span>
+            </ion-list-header>
+
+            <ion-item class="text-1x">
+              <ion-badge class="green-bg" item-start>
+                <h3 class="bold text-white">{{train.out[0].price | currency:'USD':'symbol':'2.0'}}</h3>
+              </ion-badge>
+              <ion-label>
+                {{ train.out[0].departure }} > {{ train.out[0].arriving }} ({{train.out[0].totaltime}})
+              </ion-label>
+            </ion-item>
+
+            <hr class="primary-hr" no-margin>
+
+            <ion-list-header text-center class="primary-bg">
+              <span ion-text class="bold text-white">RETURN - {{ train.returnDate }}</span>
+            </ion-list-header>
+
+            <ion-item class="text-1x">
+              <ion-badge class="green-bg" item-start>
+                <h3 class="bold text-white">{{ train.return[1].price | currency:'USD':'symbol':'2.0'}}</h3>
+              </ion-badge>
+              <ion-label>
+                {{ train.return[1].departure }} > {{ train.return[1].arriving }} ({{train.return[1].totaltime}})
+              </ion-label>
+            </ion-item>
+
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row margin-bottom>
+      <ion-col col-12>
+        <h3>Details</h3>
+        <ion-card no-margin class="w100">
+          <ion-card-content no-padding>
+            <ion-item class="itemm" text-center>
+              <span ion-text class="text-sm">
+                <strong ion-text color="secondary">Free Cancellation</strong> • {{ train.way }} • {{ train.steps }} • {{ train.class }}
+              </span>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button large full round color="secondary" (click)="checkout()">Continue Booking</button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

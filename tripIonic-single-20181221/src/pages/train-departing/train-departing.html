@@ -1,0 +1,81 @@
+<!--  -->
+<ion-header>
+
+  <ion-navbar class="no-border" color="dark">
+    <ion-title>Train <span ion-text color="light">Results</span></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="common-bg trains">
+  <!--  -->
+  <ion-toolbar padding color="secondary">
+    <p ion-text no-margin class="text-white">
+      <strong>{{ trains?.length }}</strong> results found!
+    </p>
+  </ion-toolbar>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-md-6 col-lg-6 col-xl-4 *ngFor="let train of trains; let ind = index">
+
+        <ion-card no-margin class="w100">
+          <ion-card-content no-padding>
+            <ion-item class="itemm">
+              <ion-thumbnail item-start>
+                <img [src]="train.logo">
+              </ion-thumbnail>
+              <h2 ion-text color="dark">
+                <strong>{{ train.from }}</strong> <ion-icon name="train" color="light"></ion-icon> <strong>{{ train.to }}</strong>
+              </h2>
+              <h3 ion-text color="light">
+                <strong>{{ train.name }}</strong>
+              </h3>
+              <p ion-text color="primary" class="text-sm">{{ train.way }} • {{ train.steps }} • {{ train.class }}</p>
+
+              <div item-end>
+                <button ion-button color="secondary" (click)="chooseTrain(train)">Select</button>
+              </div>
+            </ion-item>
+
+            <div radio-group [(ngModel)]="outOpts[ind]">
+              <ion-list-header text-center class="primary-bg">
+                <span ion-text class="bold text-white">OUT - {{ train.outDate }}</span>
+              </ion-list-header>
+
+              <ion-item *ngFor="let out of train.out; let idx = index" class="text-1x">
+                <ion-badge class="green-bg" item-start>
+                  <h3 class="bold text-white">{{out.price | currency:'USD':'symbol':'2.0'}}</h3>
+                </ion-badge>
+                <ion-label>
+                  {{ out.departure }} > {{ out.arriving }} ({{out.totaltime}})
+                </ion-label>
+                <ion-radio [value]="idx"></ion-radio>
+              </ion-item>
+            </div>
+
+            <hr class="primary-hr" no-margin>
+
+            <div radio-group [(ngModel)]="returnOpts[ind]">
+              <ion-list-header text-center class="primary-bg">
+                <span ion-text class="bold text-white">RETURN - {{ train.returnDate }}</span>
+              </ion-list-header>
+
+              <ion-item *ngFor="let return of train.return; let idx = index" class="text-1x">
+                <ion-badge class="green-bg" item-start>
+                  <h3 class="bold text-white">{{return.price | currency:'USD':'symbol':'2.0'}}</h3>
+                </ion-badge>
+                <ion-label>
+                  {{ return.departure }} > {{ return.arriving }} ({{return.totaltime}})
+                </ion-label>
+                <ion-radio [value]="idx"></ion-radio>
+              </ion-item>
+            </div>
+
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

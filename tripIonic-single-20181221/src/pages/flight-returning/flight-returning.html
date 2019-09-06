@@ -1,0 +1,56 @@
+<!--  -->
+<ion-header>
+
+  <ion-navbar class="no-border" color="primary">
+    <ion-title>Flight <span ion-text color="light">(Returning)</span></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="common-bg flights">
+  <!--  -->
+  <ion-toolbar padding color="secondary">
+    <p ion-text no-margin class="text-white">
+      <strong>{{ flights?.length }}</strong> results found!
+    </p>
+  </ion-toolbar>
+
+  <ion-grid>
+    <ion-row>
+
+      <ion-col col-12 col-md-6 col-lg-6 col-xl-4 no *ngFor="let flight of flights" tappable (click)="chooseFlight(flight)">
+
+          <ion-card no-margin class="w100">
+            <ion-card-content no-padding>
+              <ion-item class="itemm">
+                <ion-thumbnail item-start>
+                  <img [src]="flight.logo">
+                  <!-- <span ion-text text-center class="text-sm">{{ flight.name }}</span> -->
+                </ion-thumbnail>
+                <h2 ion-text color="dark">
+                  <strong>{{ flight.departure }}</strong> - <strong>{{ flight.arriving }}</strong>
+                </h2>
+                <h3>{{ flight.totaltime }} ({{ flight.steps }})</h3>
+                <h3 ion-text color="light"><strong>{{ flight.from }}</strong> <ion-icon name="airplane" color="light" class="deg180"></ion-icon> <strong>{{ flight.to }}</strong></h3>
+
+                <div item-end>
+                <ion-badge class="green-bg">
+                  <h3 class="bold text-white">{{ flight.price | currency:'USD':'symbol':'2.0' }}</h3>
+                </ion-badge>
+                <p class="text-sm">{{ flight.way }}</p>
+                </div>
+              </ion-item>
+              <hr class="primary-hr" no-margin>
+              <ion-item class="itemm" text-center>
+                <span ion-text class="text-sm">
+                  <strong ion-text color="secondary">Free Cancellation</strong> • {{ flight.class }} | {{ flight.airplane }}
+                </span>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

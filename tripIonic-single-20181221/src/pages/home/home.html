@@ -1,0 +1,113 @@
+<!-- -->
+<ion-header class="no-shadow">
+
+  <ion-navbar class="no-border" color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <div ion-text class="icon-title text-white"></div>
+      <span class="text-light">Cedar</span><strong>Trips</strong>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button tappable (click)="presentNotifications($event)">
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+      <button ion-button tappable (click)="goToAccount()">
+        <ion-icon name="cog"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="common-bg">
+  <!--list menu on the top-->
+  <div class="trip-card-wrapper" no-margin>
+    <ion-card class="opt-card">
+      <ion-card-header>
+        <ion-card no-margin class="w100">
+          <ion-card-content class="primary-bg">
+            <h2 ion-text class="bold text-white" text-center>Choose your way</h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-card-header>
+      <ion-card-content class="card-background-page">
+        <ion-card no-margin margin-bottom tapplable (click)="searchFlights()">
+          <img src="assets/img/flight/flight_cover.jpg" />
+          <div class="card-title">Flights</div>
+          <div class="card-subtitle">
+            <span ion-text color="red" class="bold">12</span> bookings today!
+          </div>
+          <span ion-text class="card-img-status sale fw300 text-white">
+            hot sales
+          </span>
+        </ion-card>
+
+        <ion-card no-margin margin-bottom tapplable (click)="searchCruises()">
+          <img src="assets/img/cruise/cruise_cover.jpg" />
+          <div class="card-title">Cruises</div>
+          <div class="card-subtitle">
+            <span ion-text color="secondary" class="bold">8</span> bookings today!
+          </div>
+          <span ion-text class="card-img-status promo fw300 text-white">
+            discounts
+          </span>
+        </ion-card>
+
+        <ion-card no-margin tapplable (click)="searchTrains()">
+          <img src="assets/img/train/train_cover.jpg" />
+          <div class="card-title">Trains</div>
+          <div class="card-subtitle">
+            <span ion-text color="red" class="bold">27</span> bookings today!
+          </div>
+          <span ion-text class="card-img-status deals fw300 text-white">
+            top deals
+          </span>
+        </ion-card>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+
+  <div class="trip-card-wrapper deals" no-margin>
+    <ion-card class="opt-card">
+      <ion-card-header>
+        <ion-card no-margin class="w100">
+          <ion-card-content class="primary-bg">
+            <h2 ion-text class="bold text-white" text-center>Today's Top Deals</h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-card-header>
+
+      <ion-card-content class="card-background-page">
+        <ion-grid no-padding>
+          <ion-row>
+            <ion-col col-12 no-padding margin-bottom>
+              <ion-card no-margin>
+                <img src="assets/img/train/train_cover.jpg" />
+                <div class="card-title">40% OFF</div>
+                <div class="card-subtitle">
+                  Cheap train lines!
+                </div>
+              </ion-card>
+            </ion-col>
+
+            <ion-col col-12 no-padding>
+              <ion-card no-margin>
+                <img src="assets/img/flight/flight_cover.jpg" />
+                <div class="card-title">30% OFF</div>
+                <div class="card-subtitle">
+                  Goa to Delhi
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+</ion-content>

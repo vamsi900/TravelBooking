@@ -1,0 +1,119 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar class="no-border" color="primary">
+    <ion-title>Flight Detail</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="common-bg">
+  <!--  -->
+  <ion-toolbar padding color="secondary">
+    <h3 ion-text no-margin class="text-white text-1x">
+      <strong>Review your trip</strong>
+    </h3>
+  </ion-toolbar>
+
+  <ion-grid fixed>
+    <ion-row margin-bottom>
+
+      <ion-col col-12 col-md-6 *ngIf="departing">
+        <ion-card no-margin class="w100">
+          <ion-card-header class="primary-bg">
+            <h3 class="text-1x text-white bold">
+              <ion-icon name="airplane"></ion-icon>
+              Departing
+            </h3>
+          </ion-card-header>
+          <hr class="primary-hr" no-margin>
+          <ion-card-content no-padding>
+            <ion-item class="itemm">
+              <ion-thumbnail item-start>
+                <img [src]="departing.logo">
+                <!-- <span ion-text text-center class="text-sm">{{ flight.name }}</span> -->
+              </ion-thumbnail>
+              <h2 ion-text color="dark">
+                <strong>{{ departing.departure }}</strong> -
+                <strong>{{ departing.arriving }}</strong>
+              </h2>
+              <h3>{{ departing.totaltime }} ({{ departing.steps }})</h3>
+              <h3 ion-text color="light">
+                <strong>{{ departing.from }}</strong>
+                <ion-icon name="airplane" color="light"></ion-icon>
+                <strong>{{ departing.to }}</strong>
+              </h3>
+
+              <div item-end>
+                <ion-badge class="green-bg">
+                  <h3 class="bold text-white">{{ departing.price | currency:'USD':'symbol':'2.0' }}</h3>
+                </ion-badge>
+                <p class="text-sm">{{ departing.way }}</p>
+              </div>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col col-12 col-md-6 *ngIf="returning">
+        <ion-card no-margin class="w100">
+          <ion-card-header class="primary-bg">
+            <h3 class="text-1x text-white bold">
+              <ion-icon name="airplane" class="deg180"></ion-icon>
+              Returning
+            </h3>
+          </ion-card-header>
+          <hr class="primary-hr" no-margin>
+          <ion-card-content no-padding>
+            <ion-item class="itemm">
+              <ion-thumbnail item-start>
+                <img [src]="returning.logo">
+                <!-- <span ion-text text-center class="text-sm">{{ flight.name }}</span> -->
+              </ion-thumbnail>
+              <h2 ion-text color="dark">
+                <strong>{{ returning.departure }}</strong> -
+                <strong>{{ returning.arriving }}</strong>
+              </h2>
+              <h3>{{ returning.totaltime }} ({{ returning.steps }})</h3>
+              <h3 ion-text color="light">
+                <strong>{{ returning.from }}</strong>
+                <ion-icon name="airplane" color="light" class="deg180"></ion-icon>
+                <strong>{{ returning.to }}</strong>
+              </h3>
+
+              <div item-end>
+                <ion-badge class="green-bg">
+                  <h3 class="bold text-white">{{ returning.price | currency:'USD':'symbol':'2.0' }}</h3>
+                </ion-badge>
+                <p class="text-sm">{{ returning.way }}</p>
+              </div>
+            </ion-item>
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row margin-bottom>
+      <ion-col col-12>
+        <h3>Details</h3>
+        <ion-card no-margin class="w100">
+          <ion-card-content no-padding>
+            <ion-item class="itemm" text-center>
+              <span ion-text class="text-sm">
+                <strong ion-text color="secondary">Free Cancellation</strong> • {{ departing.class }} | {{ departing.airplane }}
+              </span>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button large full round color="one" (click)="checkout()">Continue Booking</button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

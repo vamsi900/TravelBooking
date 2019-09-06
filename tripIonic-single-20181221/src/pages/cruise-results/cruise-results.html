@@ -1,0 +1,55 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Cruise Results</ion-title>
+  </ion-navbar>
+
+  <!--  -->
+  <ion-toolbar padding color="secondary">
+    <p ion-text no-margin class="text-white">
+      <strong>{{ cruises.length }}</strong> results found!
+    </p>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="cruises common-bg">
+  <ion-grid>
+    <ion-row>
+      <!--list of trips-->
+      <ion-col col-12 col-md-6 col-lg-6 col-xl-4 *ngFor="let cruise of cruises" tappable (click)="viewDetail(cruise.id)">
+
+        <ion-card no-margin class="w100">
+          <ion-card-header no-padding class="coverbg" [ngStyle]="{'background-image': 'url(' + cruise.images[0] + ')'}">
+            <!-- Something else? -->
+            <ion-badge float-right class="dark-bg">
+              <h2 class="bold text-white">{{ cruise.price_adult | currency:'USD':'symbol':'2.0' }} <small ion-text color="light">/person</small></h2>
+            </ion-badge>
+          </ion-card-header>
+          <ion-card-content no-padding>
+            <ion-item class="itemm">
+              <ion-thumbnail item-start>
+                <img [src]="cruise.thumb">
+              </ion-thumbnail>
+              <h2 ion-text color="dark">
+                {{ cruise.name }}
+              </h2>
+              <h3><strong>Sailing dates:</strong> {{ cruise.date }}</h3>
+              <h3 ion-text color="light"><strong>{{ cruise.time }}</strong></h3>
+            </ion-item>
+
+            <hr class="primary-hr" no-margin>
+
+            <ion-item class="itemm" text-center>
+              <span ion-text class="text-sm">
+                <strong>Ports of call:</strong> {{ cruise.ports }}
+              </span>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
